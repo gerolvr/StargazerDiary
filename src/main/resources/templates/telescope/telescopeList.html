@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Stargazer Diary - My Telescopes</title>
+</head>
+<body>
+<div class="container">
+
+	<div layout:fragment="content">
+
+	<h1>My telescopes</h1>
+	
+	<div>
+		<table class="table table-hover">
+			<tr>
+				<th>Name</th>
+				<th>Maker</th>
+				<th>Model</th>
+				<th>Features</th>
+				<th>Type</th>
+				<th>Action</th>
+			</tr>
+			<tr th:each="telescope : ${telescopesList}">
+				<td th:text="${telescope.name}"></td>
+				<td th:text="${telescope.maker}"></td>
+				<td th:text="${telescope.model}"></td>
+				<td style="white-space: pre-line" th:text="${telescope.features}"></td>
+				<td th:text="${telescope.telescopeType}"></td>
+				<td>
+					<div sec:authorize="isAuthenticated()" class="btn-group" role="group" aria-label="...">
+							<a class="btn btn-primary" th:href="@{'/telescopes/edit/' + ${telescope.id}}">Edit</a>
+							<a class="btn btn-warning" th:href="@{'/telescopes/delete/' + ${telescope.id}}">Delete</a>
+						</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<a sec:authorize="isAuthenticated()" class="btn btn-success" th:href="'/telescopes/add'">Add a telescope</a>
+	
+	</div>
+
+</div>
+</body>
+</html>

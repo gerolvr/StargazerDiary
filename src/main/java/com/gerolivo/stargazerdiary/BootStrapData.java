@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.gerolivo.stargazerdiary.domain.Role;
 import com.gerolivo.stargazerdiary.domain.Stargazer;
+import com.gerolivo.stargazerdiary.domain.Telescope;
+import com.gerolivo.stargazerdiary.domain.TelescopeType;
 import com.gerolivo.stargazerdiary.repositories.RoleRepository;
 import com.gerolivo.stargazerdiary.repositories.StargazerRepository;
 
@@ -30,10 +32,18 @@ public class BootStrapData {
 			stargazer2.addRole(roleUser);
 			stargazerAdmin.addRole(roleUser);
 			stargazerAdmin.addRole(roleAdmin);
+			
+			Telescope telescope = new Telescope("Stargazer's Dobson", "Meade", "Lightbridge", "Lot of cool features", TelescopeType.DOBSON);
+			Telescope telescope2 = new Telescope("Stargazer's Reflector2", "Meade", "Lightbridge", "Lot of cool features 2", TelescopeType.REFLECTOR);
+			stargazer1.addTelescope(telescope);
+			stargazer1.addTelescope(telescope2);
+			
 			observerRepository.save(stargazer1);
 			observerRepository.save(stargazer2);
 			observerRepository.save(stargazerAdmin);
 			observerRepository.flush();
+			
+			
 		};
 	}
 }
