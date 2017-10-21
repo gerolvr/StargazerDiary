@@ -22,8 +22,10 @@ public class BootStrapData {
 		return (args) -> {
 			Role roleUser = new Role("USER");
 			Role roleAdmin = new Role("ADMIN");
+			Role roleActuator = new Role("ACTUATOR");
 			roleRepository.save(roleUser);
 			roleRepository.save(roleAdmin);
+			roleRepository.save(roleActuator);
 			String encodedPassword = encoder.encode("password");
 			Stargazer stargazer1 = new Stargazer("user", encodedPassword);
 			Stargazer stargazer2 = new Stargazer("user2", encodedPassword);
@@ -32,6 +34,7 @@ public class BootStrapData {
 			stargazer2.addRole(roleUser);
 			stargazerAdmin.addRole(roleUser);
 			stargazerAdmin.addRole(roleAdmin);
+			stargazerAdmin.addRole(roleActuator);
 			
 			Telescope telescope = new Telescope("Stargazer's Dobson", "Meade", "Lightbridge", "Lot of cool features", TelescopeType.DOBSON);
 			Telescope telescope2 = new Telescope("Stargazer's Reflector2", "Meade", "Lightbridge", "Lot of cool features 2", TelescopeType.REFLECTOR);
