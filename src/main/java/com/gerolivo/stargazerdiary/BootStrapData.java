@@ -1,11 +1,14 @@
 package com.gerolivo.stargazerdiary;
 
+import java.util.Calendar;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.gerolivo.stargazerdiary.domain.Observation;
 import com.gerolivo.stargazerdiary.domain.Role;
 import com.gerolivo.stargazerdiary.domain.Stargazer;
 import com.gerolivo.stargazerdiary.domain.Telescope;
@@ -40,6 +43,16 @@ public class BootStrapData {
 			Telescope telescope2 = new Telescope("Stargazer's Reflector2", "Meade", "Lightbridge", "Lot of cool features 2", TelescopeType.REFLECTOR);
 			stargazer1.addTelescope(telescope);
 			stargazer1.addTelescope(telescope2);
+			
+			Observation observation1 = new Observation("Observation name 1", Calendar.getInstance().getTime(), "Some report 1");
+			Observation observation2 = new Observation("Observation name 2", Calendar.getInstance().getTime(), "Some report 2");
+			stargazer1.addObservation(observation1);
+			stargazer1.addObservation(observation2);
+			
+			Telescope telescope3 = new Telescope("Stargazer's Reflector3", "Meade", "Lightbridge", "Lot of cool features 3", TelescopeType.REFLECTOR);
+			Observation observation3 = new Observation("Observation name 3", Calendar.getInstance().getTime(), "Some report 3");
+			stargazerAdmin.addTelescope(telescope3);
+			stargazerAdmin.addObservation(observation3);;
 			
 			observerRepository.save(stargazer1);
 			observerRepository.save(stargazer2);

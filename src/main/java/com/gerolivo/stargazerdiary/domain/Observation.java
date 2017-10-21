@@ -10,6 +10,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Observation extends AbstractDomainClass{
@@ -19,6 +20,7 @@ public class Observation extends AbstractDomainClass{
 	private String name;
 	
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Basic(optional = true)
 	private Date date;
 	
