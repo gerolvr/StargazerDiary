@@ -1,6 +1,7 @@
 package com.gerolivo.stargazerdiary.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+	@Value( "${restapi.path}" )
+	private String apiPath;
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -40,19 +44,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
             .logout()
                 .permitAll();
-        
+        http.cors();
         // Enable authentication for REST API
 		http
 			.authorizeRequests()
-				.antMatchers("/api/**").authenticated()
+				.antMatchers(apiPath + "/**").authenticated()
 				.and()
 			.httpBasic();
         // Prevent redirection to login page for non-authenticated REST API requests
         http.exceptionHandling()
-        	.defaultAuthenticationEntryPointFor(getRestAuthenticationEntryPoint(), new AntPathRequestMatcher("/api/**"));
+        	.defaultAuthenticationEntryPointFor(getRestAuthenticationEntryPoint(), new AntPathRequestMatcher(apiPath + "/**"));
         
         // For H2 Console
-        http.csrf().disable();
+        http.csrf().ignoringAntMatchers("/h2-console/*");
         http.headers().frameOptions().sameOrigin();
     }
 	
