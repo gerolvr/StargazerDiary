@@ -1,0 +1,15 @@
+{
+	"target": {"name": "M101", "alt":"" },
+	"service": {
+		"name": "Simbad",
+		"href": "http://simbad.u-strasbg.fr/simbad/sim-id?Ident=M101"
+	},
+	"coordsys": "FK5",
+	"equinox": "J2000",
+	"ra": { "decimal": 210.8024292, "h":"14", "m":"03", "s":"12.583" },
+	"dec": { "decimal": 54.3487500, "d": "+54", "m":"20", "s":"55.500" },
+	"galactic": { "lon": 102.03677, "lat": 59.77151 },
+	"jd":2458045.9203125,
+	"image": { "src":"http://server7.sky-map.org/imgcut?survey=DSS2&w=256&h=256&ra=14.05349528&de=54.3487500&angle=1.25&output=PNG", "href":"http://server1.wikisky.org/v2?ra=14.05349528&de=54.3487500&zoom=6&img_source=DSS2" },
+	"category": {"avmcode":"5.1.7","avmdesc":"Interacting Galaxies"}
+}
