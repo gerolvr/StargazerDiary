@@ -55,8 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.exceptionHandling()
         	.defaultAuthenticationEntryPointFor(getRestAuthenticationEntryPoint(), new AntPathRequestMatcher(apiPath + "/**"));
         
-        // For H2 Console
-        http.csrf().ignoringAntMatchers("/h2-console/*");
+        // For Rest API and H2 Console 
+        http.csrf().ignoringAntMatchers(apiPath + "/**", "/h2-console/*");
         http.headers().frameOptions().sameOrigin();
     }
 	
