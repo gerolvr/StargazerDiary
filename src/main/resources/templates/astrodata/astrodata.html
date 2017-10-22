@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8" />
+<title>Stargazer Diary - Astronomical Data</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div class="container">
+			<div th:if="${astroObjectNotFound}" class="alert alert-danger">
+				<p th:text="${errorAstroObjectNotFound}">Error Message</p>
+			</div>
+		</div>
+		<div th:include="fragments/searchAstronomicalObject :: search (another='an ')"></div>
+		<p>i.e. <a href="/astrodata/result?astroObjectName=M31">M31</a>, <a href="/astrodata/result?astroObjectName=M+51">M 51</a> (<a href="https://en.wikipedia.org/wiki/List_of_Messier_objects">Messier Catalog</a>)
+		, <a href="/astrodata/result?astroObjectName=NGC2174">NGC2174</a> (<a href="https://en.wikipedia.org/wiki/List_of_NGC_objects">NGC Catalog</a>)</p>
+		 
+	</div>
+</body>
+</html>

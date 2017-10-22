@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Stargazer Diary - Search an astronomical object</title>
+</head>
+<body>
+
+	<div th:fragment="search (another)">
+		<div class="container">
+			<h2 th:text="'Search ' + ${another} + 'astronomical object'">Search an astronomical object</h2>
+			<form class="form-horizontal" action="/astrodata/result" method="get">
+
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="searchAstroObject"
+						placeholder="Astronomical object name" name="astroObjectName" />
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
