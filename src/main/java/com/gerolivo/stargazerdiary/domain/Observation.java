@@ -12,6 +12,10 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.gerolivo.stargazerdiary.utils.ObservationCustomeDateDeserializer;
+
 @Entity
 public class Observation extends AbstractDomainClass{
 
@@ -21,6 +25,8 @@ public class Observation extends AbstractDomainClass{
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yy")
+	@JsonSerialize(using=ObservationCustomeDateDeserializer.class)
 	@Basic(optional = true)
 	private Date date;
 	
