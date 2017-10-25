@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http
             .authorizeRequests()
                 .antMatchers("/", "/register", "/h2-console/**", "/webjars/**", "/css/**", "/js/**").permitAll()
+                .antMatchers(apiPath + "/registration/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -52,8 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.and()
 			.httpBasic();
         // Prevent redirection to login page for non-authenticated REST API requests
-        http.exceptionHandling()
-        	.defaultAuthenticationEntryPointFor(getRestAuthenticationEntryPoint(), new AntPathRequestMatcher(apiPath + "/**"));
+		http.exceptionHandling()
+        	.defaultAuthenticationEntryPointFor(getRestApiAuthenticationEntryPoint(), new AntPathRequestMatcher(apiPath + "/**"));
         
         // For Rest API and H2 Console 
         http.csrf().ignoringAntMatchers(apiPath + "/**", "/h2-console/*");
@@ -65,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	    return new BCryptPasswordEncoder(11);
 	}
 	
-	private AuthenticationEntryPoint getRestAuthenticationEntryPoint() {
+	private AuthenticationEntryPoint getRestApiAuthenticationEntryPoint() {
         return new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED);
     }
 	
