@@ -24,6 +24,9 @@ public class Stargazer {
 	
 	private String userName;
 	private String password;
+	private String email;
+	private boolean enabled;
+	private String emailConfirmationToken;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "stargazer")
     private List<Telescope> telescopes = new ArrayList<>();
@@ -102,6 +105,30 @@ public class Stargazer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getEmailConfirmationToken() {
+		return emailConfirmationToken;
+	}
+
+	public void setEmailConfirmationToken(String emailConfirmationToken) {
+		this.emailConfirmationToken = emailConfirmationToken;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	public Set<Role> getRoles() {
 		return roles;
@@ -118,6 +145,5 @@ public class Stargazer {
 	public void removeRole(Role role) {
 		roles.remove(role);
 	}
-	
 	
 }

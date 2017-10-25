@@ -42,7 +42,11 @@
 							href="/astrodata/">Astronomical Data</a></li>
 					</ul>
 					<div class="navbar-text navbar-right">
-						Welcome <span sec:authentication="name">Guest</span>
+						Welcome <span sec:authorize="isAuthenticated()" sec:authentication="name">Guest</span>
+						<!-- <div sec:authorize="isAnonymous()"> --> 
+						    <a sec:authorize="isAnonymous()" th:href="@{/login}"> Login </a>
+						    <a sec:authorize="isAnonymous()" th:href="@{/register}"> Register</a>  
+						  <!-- </div> -->
 						<form sec:authorize="isAuthenticated()" id="frmlogout"
 							th:action="@{/logout}" method="post" class="form-inline"
 							style="display: inline;">

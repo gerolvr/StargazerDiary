@@ -7,5 +7,6 @@ import com.gerolivo.stargazerdiary.domain.Stargazer;
 public interface StargazerRepository extends JpaRepository<Stargazer, Long> {
 
 	Stargazer findByUserName(String userName);
+	Stargazer findByEmail(String email);
 
 }

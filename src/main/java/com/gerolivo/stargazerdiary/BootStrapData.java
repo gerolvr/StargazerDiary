@@ -24,11 +24,18 @@ public class BootStrapData {
 	CommandLineRunner boostrap(StargazerRepository observerRepository, PasswordEncoder encoder, RoleRepository roleRepository/*, RoleRepository2 roleRepository2*/) {
 		return (args) -> {
 			Role roleUser = new Role("USER");
-			Role roleAdmin = new Role("ADMIN");
-			Role roleActuator = new Role("ACTUATOR");
-			roleRepository.save(roleUser);
-			roleRepository.save(roleAdmin);
-			roleRepository.save(roleActuator);
+            Role roleAdmin = new Role("ADMIN");
+            Role roleActuator = new Role("ACTUATOR");
+            if(roleRepository.findByRole("USER") == null) {
+                    roleRepository.saveAndFlush(roleUser);
+            }
+            if(roleRepository.findByRole("ADMIN") == null) {
+                    roleRepository.saveAndFlush(roleAdmin);
+            }
+            if(roleRepository.findByRole("ACTUATOR") == null) {
+                    roleRepository.saveAndFlush(roleActuator);
+            }
+
 			String encodedPassword = encoder.encode("password");
 			Stargazer stargazer1 = new Stargazer("user", encodedPassword);
 			Stargazer stargazer2 = new Stargazer("user2", encodedPassword);
