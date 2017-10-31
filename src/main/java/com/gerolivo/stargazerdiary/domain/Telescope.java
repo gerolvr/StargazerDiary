@@ -1,5 +1,6 @@
 package com.gerolivo.stargazerdiary.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
@@ -15,6 +16,8 @@ public class Telescope extends AbstractDomainClass{
     
 	private String maker;
 	private String model;
+	
+	@Column(columnDefinition = "TEXT")
 	private String features;
 	
 	@ManyToOne

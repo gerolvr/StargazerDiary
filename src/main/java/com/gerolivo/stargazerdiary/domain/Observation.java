@@ -3,6 +3,7 @@ package com.gerolivo.stargazerdiary.domain;
 import java.util.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -30,6 +31,7 @@ public class Observation extends AbstractDomainClass{
 	@Basic(optional = true)
 	private Date date;
 	
+	@Column(columnDefinition = "TEXT") 
 	private String report;
 	
 	@ManyToOne
