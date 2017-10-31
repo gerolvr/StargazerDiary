@@ -65,7 +65,10 @@ public class TelescopeController {
 	
 	@GetMapping("/add")
 	public String addTelescope(Model model) {
+		
 		model.addAttribute("telescope", new Telescope());
+		model.addAttribute("header", "Add a new telescope");
+		model.addAttribute("title", "Stargazer Diary - Add a new telescope");
 		
 		return "telescope/telescopeForm";
 	}
@@ -95,6 +98,8 @@ public class TelescopeController {
 			throw new UnauthorizedException("You are not authorized to edit this telescope with id: " + id); 
 		}
 		model.addAttribute("telescope", telescope);
+		model.addAttribute("header", "Edit a telescope");
+		model.addAttribute("title", "Stargazer Diary - Edit a telescope");
 		
 		return "telescope/telescopeForm"; 
 	}

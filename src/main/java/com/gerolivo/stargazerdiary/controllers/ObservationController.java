@@ -62,7 +62,11 @@ public class ObservationController {
 	
 	@GetMapping("/add")
 	public String addObservation(Model model) {
+		
 		model.addAttribute("observation", new Observation());
+		model.addAttribute("header", "Add a new observation");
+		model.addAttribute("title", "Stargazer Diary - Add a new observation");
+		
 		return "observation/observationForm";
 	}
 	
@@ -94,6 +98,8 @@ public class ObservationController {
 		}		
 		System.out.println(observationReport);
 		model.addAttribute("observation", observationReport);
+		model.addAttribute("header", "Edit an observation");
+		model.addAttribute("title", "Stargazer Diary - Edit an observation");
 		
 		return "observation/observationForm"; 
 	}

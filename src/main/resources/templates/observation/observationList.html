@@ -15,10 +15,10 @@
 			<div>
 				<table class="table table-hover">
 					<tr>
-						<th>Name</th>
-						<th>Date</th>
-						<th>Report</th>
-						<th>Action</th>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-1">Date</th>
+						<th class="col-md-6">Report</th>
+						<th class="col-md-2">Action</th>
 					</tr>
 					<tr th:each="observation : ${observationList}">
 						<td th:text="${observation.name}"></td>
