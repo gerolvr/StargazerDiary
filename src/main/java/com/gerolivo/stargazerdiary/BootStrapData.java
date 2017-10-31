@@ -23,50 +23,51 @@ public class BootStrapData {
 	@Bean
 	CommandLineRunner boostrap(StargazerRepository observerRepository, PasswordEncoder encoder, RoleRepository roleRepository/*, RoleRepository2 roleRepository2*/) {
 		return (args) -> {
-			Role roleUser = new Role("USER");
-            Role roleAdmin = new Role("ADMIN");
-            Role roleActuator = new Role("ACTUATOR");
-            if(roleRepository.findByRole("USER") == null) {
-                    roleRepository.saveAndFlush(roleUser);
+			Role roleUser = roleRepository.findByRole("USER");// = new Role("USER");
+            Role roleAdmin = roleRepository.findByRole("ADMIN");// = new Role("ADMIN");
+            Role roleActuator = roleRepository.findByRole("ACTUATOR");// = new Role("ACTUATOR");
+            if(roleUser == null) {
+            	roleUser = roleRepository.saveAndFlush(new Role("USER"));
             }
-            if(roleRepository.findByRole("ADMIN") == null) {
-                    roleRepository.saveAndFlush(roleAdmin);
+            
+            if(roleAdmin == null) {
+            	roleAdmin = roleRepository.saveAndFlush(new Role("ADMIN"));
             }
-            if(roleRepository.findByRole("ACTUATOR") == null) {
-                    roleRepository.saveAndFlush(roleActuator);
+            
+            if(roleActuator == null) {
+            	roleActuator = roleRepository.saveAndFlush(new Role("ACTUATOR"));
             }
 
-			String encodedPassword = encoder.encode("password");
-			Stargazer stargazer1 = new Stargazer("user", encodedPassword);
-			Stargazer stargazer2 = new Stargazer("user2", encodedPassword);
-			Stargazer stargazerAdmin = new Stargazer("userAdmin", encodedPassword);
-			stargazer1.addRole(roleUser);
-			stargazer2.addRole(roleUser);
-			stargazerAdmin.addRole(roleUser);
-			stargazerAdmin.addRole(roleAdmin);
-			stargazerAdmin.addRole(roleActuator);
-			
-			Telescope telescope = new Telescope("Stargazer's Dobson", "Meade", "Lightbridge", "Lot of cool features", TelescopeType.DOBSON);
-			Telescope telescope2 = new Telescope("Stargazer's Reflector2", "Meade", "Lightbridge", "Lot of cool features 2", TelescopeType.REFLECTOR);
-			stargazer1.addTelescope(telescope);
-			stargazer1.addTelescope(telescope2);
-			
-			Observation observation1 = new Observation("Observation name 1", Calendar.getInstance().getTime(), "Some report 1");
-			Observation observation2 = new Observation("Observation name 2", Calendar.getInstance().getTime(), "Some report 2");
-			stargazer1.addObservation(observation1);
-			stargazer1.addObservation(observation2);
-			
-			Telescope telescope3 = new Telescope("Stargazer's Reflector3", "Meade", "Lightbridge", "Lot of cool features 3", TelescopeType.REFLECTOR);
-			Observation observation3 = new Observation("Observation name 3", Calendar.getInstance().getTime(), "Some report 3");
-			stargazerAdmin.addTelescope(telescope3);
-			stargazerAdmin.addObservation(observation3);;
-			
-			observerRepository.save(stargazer1);
-			observerRepository.save(stargazer2);
-			observerRepository.save(stargazerAdmin);
-			observerRepository.flush();
-			
-			
+            String encodedPassword = encoder.encode("password");
+            
+            if(observerRepository.findByUserName("user") == null) {
+            	Stargazer stargazer1 = new Stargazer("user", encodedPassword);
+            	stargazer1.addRole(roleUser);
+            	Telescope telescope = new Telescope("Stargazer's Dobson", "Meade", "Lightbridge", "Lot of cool features", TelescopeType.DOBSON);
+    			Telescope telescope2 = new Telescope("Stargazer's Reflector2", "Meade", "Lightbridge", "Lot of cool features 2", TelescopeType.REFLECTOR);
+    			stargazer1.addTelescope(telescope);
+    			stargazer1.addTelescope(telescope2);
+    			Observation observation1 = new Observation("Observation name 1", Calendar.getInstance().getTime(), "Some report 1");
+    			Observation observation2 = new Observation("Observation name 2", Calendar.getInstance().getTime(), "Some report 2");
+    			stargazer1.addObservation(observation1);
+    			stargazer1.addObservation(observation2);
+    			observerRepository.saveAndFlush(stargazer1);
+            }
+            
+            if(observerRepository.findByUserName("userAdmin") == null) {
+            	Stargazer stargazerAdmin = new Stargazer("userAdmin", encodedPassword);
+    			
+    			stargazerAdmin.addRole(roleUser);
+    			stargazerAdmin.addRole(roleAdmin);
+    			stargazerAdmin.addRole(roleActuator);
+    			
+    			Telescope telescope3 = new Telescope("Stargazer's Reflector3", "Meade", "Lightbridge", "Lot of cool features 3", TelescopeType.REFLECTOR);
+    			Observation observation3 = new Observation("Observation name 3", Calendar.getInstance().getTime(), "Some report 3");
+    			stargazerAdmin.addTelescope(telescope3);
+    			stargazerAdmin.addObservation(observation3);;
+    			
+    			observerRepository.saveAndFlush(stargazerAdmin);
+            }
 		};
 	}
 }
