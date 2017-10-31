@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
+<head>
+<meta charset="UTF-8" />
+<title th:text="'Ooops, something went wrong: ' + ${error}">Insert
+	title here</title>
+</head>
+<body>
+	<div class="container">
+
+		<div layout:fragment="content">
+
+			<h1 th:text="'Ooops, something went wrong:'">Error message</h1>
+			<table class="table table-condensed">
+				<tbody>
+					<tr>
+						<td>TimeStamp</td>
+						<td th:text="${timestamp}"></td>
+					</tr>
+					<tr>
+						<td>Status</td>
+						<td th:text="${status}"></td>
+					</tr>
+					<tr>
+						<td>Message</td>
+						<td th:text="${message}"></td>
+					</tr>
+					<tr>
+						<td>Error</td>
+						<td th:text="${error}"></td>
+					</tr>
+					<tr>
+						<td>Path</td>
+						<td th:text="${path}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
