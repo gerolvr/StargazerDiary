@@ -55,7 +55,7 @@ public class AstroDataController {
 		StringBuilder stringBuilderUrl = astroDataService.generatePlanetariumIFrameUrl(skyObjectValue);
 		model.addAttribute("iframeUrl", stringBuilderUrl.toString());
 		
-		StringBuilder stringBuilderUrlWS = astroDataService.generateWhiskyskyIFrameUrl(skyObjectValue);
+		StringBuilder stringBuilderUrlWS = astroDataService.generateWikiskyIFrameUrl(skyObjectValue);
 		model.addAttribute("iframeUrlWS", stringBuilderUrlWS.toString());
 		
 		return "astrodata/result";

@@ -32,7 +32,7 @@ public class AstroDataRestController {
 		
 		StringBuilder coordinates = astroDataService.generateCoordinate(astroObjectData);
 		StringBuilder stringBuilderUrlPlanetarium = astroDataService.generatePlanetariumIFrameUrl(astroObjectData);
-		StringBuilder stringBuilderUrlWiskySky = astroDataService.generateWhiskyskyIFrameUrl(astroObjectData);
+		StringBuilder stringBuilderUrlWiskySky = astroDataService.generateWikiskyIFrameUrl(astroObjectData);
 		
 		AstroDataSearchResult astroDataSearchResult = new AstroDataSearchResult(
 				true,

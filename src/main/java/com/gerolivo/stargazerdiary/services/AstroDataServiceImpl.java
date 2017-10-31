@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -33,6 +34,7 @@ public class AstroDataServiceImpl implements AstroDataService{
 	 * @see AstroObjectData
 	 */
 	@Override
+	@Cacheable("astroObjectData")
 	public AstroObjectData getAstroDataForObjectName(String astronomicalObjectName) {
 		
 		// Customize the Jackson converter because the REST service responds
@@ -82,22 +84,24 @@ public class AstroDataServiceImpl implements AstroDataService{
 	 * @see AstroObjectData
 	 */
 	@Override
-	public StringBuilder generateWhiskyskyIFrameUrl(AstroObjectData astroObjectData) {
+	public StringBuilder generateWikiskyIFrameUrl(AstroObjectData astroObjectData) {
 		int raH, decD;
-		double raM, decM, raS, decS;
 		int sign = 1;
 		
 		raH = new Integer(astroObjectData.getRa().getH());
 		sign = raH < 0 ? -1 : 1;
-		raM = sign * new Float(new Integer(astroObjectData.getRa().getM()) * 100 / 60) * 0.01;
-		raS = sign * new Float(astroObjectData.getRa().getS()) * 100 / 3600 * 0.01;
-		double ra = raH + raM + raS;
 
+		double ra = sign *
+				(Math.abs(new Double(astroObjectData.getRa().getH()))
+						+ (new Double(astroObjectData.getRa().getM()) / 60.0)
+						+ (new Double(astroObjectData.getRa().getS()) / 3600.0));
+		
 		decD = new Integer(astroObjectData.getDec().getD());
 		sign = decD < 0 ? -1 : 1;
-		decM = sign * new Float(new Integer(astroObjectData.getDec().getM()) * 100 / 60) * 0.01;
-		decS = sign * new Float(astroObjectData.getDec().getS()) * 100 / 3600 * 0.01;
-		double dec = decD + decM + decS;
+		double dec = sign *
+				(Math.abs(new Double(astroObjectData.getDec().getD()))
+						+ (new Double(astroObjectData.getDec().getM()) / 60.0)
+						+ (new Double(astroObjectData.getDec().getS()) / 3600.0));
 
 		StringBuilder stringBuilderUrl = new StringBuilder();
 		stringBuilderUrl.append("http://server1.wikisky.org/v2?");
