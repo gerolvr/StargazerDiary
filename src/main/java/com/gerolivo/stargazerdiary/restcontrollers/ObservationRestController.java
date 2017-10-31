@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +35,7 @@ public class ObservationRestController {
 	private StargazerRepository stargazerRepository;
 	
 	public ObservationRestController(SkyObservationService skyObservationService
-			, StargazerRepository stargazerRepository
-			, CounterService counterService
-			, GaugeService gaugeService) {
+			, StargazerRepository stargazerRepository) {
 		this.skyObservationService = skyObservationService;
 		this.stargazerRepository = stargazerRepository;
 	}
@@ -77,7 +76,7 @@ public class ObservationRestController {
 		return new ResponseEntity<String>("Observation successfuly saved", HttpStatus.OK);
 	}
 	
-	@RequestMapping("/get/{id}")
+	@GetMapping("/get/{id}")
 	public Observation getObservation(@PathVariable(value="id") Long id, @AuthenticationPrincipal User user) throws Exception {
 		
 		logger.debug("Getting Observation with id " + id);
@@ -98,7 +97,7 @@ public class ObservationRestController {
 		return observation;
 	}
 	
-	@RequestMapping("/delete/{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteObservation(@PathVariable(value="id") Long id, @AuthenticationPrincipal User user) throws Exception {
 		
 		logger.debug("Deleting Observation with id " + id);

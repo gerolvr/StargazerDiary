@@ -210,7 +210,7 @@ public class TelescopeRestControllerTest {
 		Mockito.when(skyObservationService.getTelescope(Mockito.any()))
 			.thenReturn(telescope1);
 		
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete(
 				"/api/v1/telescopes/delete/1").accept(
 				MediaType.APPLICATION_JSON);
 		
@@ -234,7 +234,7 @@ public class TelescopeRestControllerTest {
 			.thenReturn(telescope3);
 		
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
-			.get("/api/v1/telescopes/delete/1")
+			.delete("/api/v1/telescopes/delete/1")
 			.accept(MediaType.APPLICATION_JSON);
 		
 		mockMvc.perform(requestBuilder)
