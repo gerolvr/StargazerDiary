@@ -6,10 +6,18 @@
 </head>
 <body>
 <div layout:fragment="content">
-	<h1>Welcome</h1>
+	<h1>Welcome <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>, you are on the WebMVC/Thymeleaf frontend for the Stargazer Diary web application</h1>
+	<p>Visit <a href="https://github.com/gerolvr/StargazerDiary/blob/master/README.md">https://github.com/gerolvr/StargazerDiary/blob/master/README.md</a> for more info and access the source code</p>
 	<div sec:authorize="isAnonymous()"> 
     <a class="btn btn-success" th:href="@{/login}">Login</a>
     <a class="btn btn-primary" th:href="@{/register}">Register</a>  
+  </div>
+  <div sec:authorize="isAuthenticated()">
+  	<!-- <a class="btn btn-warning" th:href="@{/logout}">Logout</a> --> 
+    <form id="logout" th:action="@{/logout}" method="post" class="form-inline">
+		<a class="btn btn-warning" href="javascript:{}"
+			onclick="document.getElementById('logout').submit(); return false;">Logout</a>
+	</form>
   </div>
 </div>
 </body>
