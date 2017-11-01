@@ -1,13 +1,13 @@
 # StargazerDiary
 
 # Table of Content
-* [Presentation of the interface](#Presentation-of-the-interface)
-  * [My Telescopes](#My-Telescopes)
-  * [My Observations](#My-Observations)
-  * [Astronomical Data](#Astronomical-Data)
-  * [Registration, Authentication and Authorization](#Registration,-Authentication-and-Authorization)
-* [Caching](#Caching)
-* [Custom error pages](#Custom-error-pages)
+* [Presentation of the interface](#presentation-of-the-interface)
+  * [My Telescopes](#my-telescopes)
+  * [My Observations](#my-observations)
+  * [Astronomical Data](#astronomical-data)
+  * [Registration, Authentication and Authorization](#registration-authentication-and-authorization)
+* [Caching](#caching)
+* [Custom error pages](#custom-error-pages)
   
 Stargazer Diary is a simple demo project.
 The idea is to allow a stargazer to list its telescopes and keep a track of the observations he made.
