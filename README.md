@@ -39,11 +39,13 @@ It is mostly conceptual as the main purpose of the project is to use different t
 # Presentation of the interface
 ## My Telescopes
 The user can manage a list of telescopes he owns with basic operations: add, edit and delete.
+
 ![Telescopes](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/telescope1.png "Telescopes")
 ![Telescopes](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/telescope2.png "Telescopes")
 
 ## My Observations
 The user can manage a list of observations: add, edit and delete.
+
 ![Observations](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/observation1.png "Observations")
 ![Observations](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/observation2.png "Observations")
 
@@ -53,20 +55,25 @@ The coordinates of the object to set up the telescope.
 A planetarium view to help him visually locate the object in the sky
 An optical view.
 The planetarium and optical views are embedded iframes from external website.
+
 ![AstroData](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/astrodatasearch.png "AstroData")
 
 ## Registration, Authentication and Authorization
 For demo purpose the registration is simple, only a username and password is required to register and login. In a normal scenario, an email would be required to validate the registration and a Profile page would allow to update email and password.
+
 ![Register](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/register1.png "Register")
 
 If not logged in, the user is redirected to the login page:
+
 ![Login](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/login.png "Login")
 
 If the user name already exists he will get an error message:
+
 ![Register](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/register2.png "Register")
 
 A user cannot edit or delete another user telescope or observation. If he tries to meddle with the
 url he will get a 401 error:
+
 ![401](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/401.png "401")
 
 # Caching
