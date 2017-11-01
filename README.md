@@ -63,15 +63,15 @@ For demo purpose the registration is simple, only a username and password is req
 
 ![Register](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/register1.png "Register")
 
-If not logged in, the user is redirected to the login page:
+* If not logged in, the user is redirected to the login page:
 
 ![Login](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/login.png "Login")
 
-If the user name already exists he will get an error message:
+* If the user name already exists he will get an error message:
 
 ![Register](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/register2.png "Register")
 
-A user cannot edit or delete another user telescope or observation. If he tries to meddle with the
+* A user cannot edit or delete another user telescope or observation. If he tries to meddle with the
 url he will get a 401 error:
 
 ![401](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/401.png "401")
