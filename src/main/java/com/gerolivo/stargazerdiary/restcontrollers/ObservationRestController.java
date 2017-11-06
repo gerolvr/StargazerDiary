@@ -43,7 +43,8 @@ public class ObservationRestController {
 
 	@GetMapping("/observationList")
 	public List<Observation> getObservationList(@AuthenticationPrincipal User user) {
-
+		logger.debug("Getting observation list for user: " + user.getUsername());
+		
 		Stargazer stargazer = stargazerRepository.findByUserName(user.getUsername());
 		
 		return stargazer.getObservations();
@@ -52,7 +53,7 @@ public class ObservationRestController {
 	@PostMapping("/saveObservation")
 	public ResponseEntity<String> addObservation(@RequestBody Observation newObservation, @AuthenticationPrincipal User user) {
 		
-		logger.debug("Saving Observation with id " + newObservation.getId());
+		logger.debug("Saving Observation: " + newObservation.toString());
 		
 		Stargazer stargazer = stargazerRepository.findByUserName(user.getUsername());
 		newObservation.setStargazer(stargazer);
@@ -71,7 +72,7 @@ public class ObservationRestController {
 			skyObservationService.addorUpdateObservation(newObservation);
 		}
 		
-		logger.debug("Saved Observation with id: " + newObservation.getId());
+		logger.debug("Saved Observation: " + newObservation.toString());
 	
 		return new ResponseEntity<String>("Observation successfuly saved", HttpStatus.OK);
 	}

@@ -2,6 +2,7 @@ package com.gerolivo.stargazerdiary.controllers;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ import com.gerolivo.stargazerdiary.services.SkyObservationService;
 @RequestMapping("/telescopes")
 public class TelescopeController {
 
+	Logger logger = Logger.getLogger(TelescopeController.class);
+	
 	private SkyObservationService skyObservationService; 
 	private StargazerRepository stargazerRepository;
 	
@@ -57,6 +60,8 @@ public class TelescopeController {
 	
 	@GetMapping("/telescopeList")
 	public String getTelescopesList(Model model, @AuthenticationPrincipal User user) {
+		logger.debug("Telescope list for user:" + user.getUsername());
+		
 		Stargazer stargazer = stargazerRepository.findByUserName(user.getUsername());
 		model.addAttribute("telescopesList", stargazer.getTelescopes());
 		
@@ -83,6 +88,8 @@ public class TelescopeController {
 		telescope.setObserver(stargazer);
 
 		skyObservationService.addorUpdateTelescope(telescope);
+		
+		logger.debug("Saved Telescope: " + telescope.toString());
 		
 		return "redirect:/telescopes/telescopeList";
 	}

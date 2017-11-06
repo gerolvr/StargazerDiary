@@ -1,5 +1,6 @@
 package com.gerolivo.stargazerdiary.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ import com.gerolivo.stargazerdiary.services.AstroDataService;
 @RequestMapping("/astrodata")
 public class AstroDataController {
 
+	Logger logger = Logger.getLogger(AstroDataController.class);
+	
 	AstroDataService astroDataService;
 	
 	public AstroDataController(AstroDataService astroDataService) {
@@ -37,6 +40,8 @@ public class AstroDataController {
 	@GetMapping("result")
 	public String result(Model model, @RequestParam("astroObjectName") String astroObjectName) {
 		
+		logger.debug("Search request for: " + astroObjectName);
+		
 		AstroObjectData skyObjectValue = astroDataService.getAstroDataForObjectName(astroObjectName);
 		if(skyObjectValue.getRa()==null)
 		{
@@ -51,6 +56,8 @@ public class AstroDataController {
 		model.addAttribute("astroObjectType", skyObjectValue.getCategory().getAvmdesc());
 		model.addAttribute("astroObjectCoordinates", coordinates.toString());
 		model.addAttribute("foundAstroObject", skyObjectValue);
+		
+		logger.debug("AstroDataSearchResult: " + skyObjectValue.toString());
 		
 		StringBuilder stringBuilderUrl = astroDataService.generatePlanetariumIFrameUrl(skyObjectValue);
 		model.addAttribute("iframeUrl", stringBuilderUrl.toString());

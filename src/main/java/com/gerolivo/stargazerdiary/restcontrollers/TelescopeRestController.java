@@ -50,6 +50,8 @@ public class TelescopeRestController {
 	@PostMapping("/saveTelescope")
 	public ResponseEntity<String> addTelescope(@RequestBody Telescope newTelescope, @AuthenticationPrincipal User user) throws Exception {
 
+		logger.debug("Saving Telescope: " + newTelescope.toString());
+		
 		Stargazer stargazer = stargazerRepository.findByUserName(user.getUsername());
 		
 		Telescope currentTelescope = null;
@@ -72,6 +74,8 @@ public class TelescopeRestController {
 			newTelescope.setObserver(stargazer);
 			skyObservationService.addorUpdateTelescope(newTelescope);
 		}
+		
+		logger.debug("Saved Telescope: " + newTelescope.toString());
 
 		return new ResponseEntity<String>("Telescope successfuly saved", HttpStatus.OK);
 	}

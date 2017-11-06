@@ -1,5 +1,6 @@
 package com.gerolivo.stargazerdiary.restcontrollers;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,8 @@ import com.gerolivo.stargazerdiary.services.AstroDataService;
 @RequestMapping("${restapi.path}" + "/astrodata")
 public class AstroDataRestController {
 
+	Logger logger = Logger.getLogger(AstroDataRestController.class);
+	
 	AstroDataService astroDataService;
 	
 	public AstroDataRestController(AstroDataService astroDataService) {
@@ -21,6 +24,8 @@ public class AstroDataRestController {
 	
 	@GetMapping("/search/{astroObjectName}")
 	public AstroDataSearchResult result(@PathVariable String astroObjectName) {
+
+		logger.debug("Search request for: " + astroObjectName);
 		
 		AstroObjectData astroObjectData = astroDataService.getAstroDataForObjectName(astroObjectName);
 		if(astroObjectData.getRa()==null)
@@ -44,7 +49,7 @@ public class AstroDataRestController {
 				astroObjectData.getImage().getSrc()
 				);
 		
-		System.out.println("AstroDataSearchResult: " + astroDataSearchResult.toString());
+		logger.debug("AstroDataSearchResult: " + astroDataSearchResult.toString());
 		
 		return astroDataSearchResult;
 	}

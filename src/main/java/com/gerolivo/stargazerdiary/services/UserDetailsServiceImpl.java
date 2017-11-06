@@ -3,6 +3,7 @@ package com.gerolivo.stargazerdiary.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,12 +19,14 @@ import com.gerolivo.stargazerdiary.repositories.StargazerRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+	Logger logger = Logger.getLogger(UserDetailsServiceImpl.class);
+	
 	@Autowired
 	StargazerRepository userRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		System.out.println("UserDetailsServiceImpl.UserName requesting: " + userName);
+		logger.debug("Requesting: " + userName);
 		Stargazer stargazer = userRepository.findByUserName(userName);
 		
 		// Check required to respect the contract from loadUserByUsername()

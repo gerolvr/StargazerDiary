@@ -2,6 +2,7 @@ package com.gerolivo.stargazerdiary.controllers;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ import com.gerolivo.stargazerdiary.services.SkyObservationService;
 @RequestMapping("/observations")
 public class ObservationController {
 
+	Logger logger = Logger.getLogger(ObservationController.class);
+	
 	private SkyObservationService skyObservationService; 
 	private StargazerRepository stargazerRepository;
 	
@@ -55,6 +58,7 @@ public class ObservationController {
 	
 	@GetMapping("/observationList")
 	public String getObservationList(Model model, @AuthenticationPrincipal User user) {
+		logger.debug("Observation list for user:" + user.getUsername());
 		Stargazer stargazer = stargazerRepository.findByUserName(user.getUsername());
 		model.addAttribute("observationList", stargazer.getObservations());
 		return "observation/observationList";
@@ -72,17 +76,19 @@ public class ObservationController {
 	
 	@PostMapping("/observationForm")
 	public String addObservationForm(@Valid @ModelAttribute("observation") Observation observationReport, BindingResult bindingResult, @AuthenticationPrincipal User user) {
-		System.out.println(observationReport);
+		
 		if(bindingResult.hasErrors())
 		{
 			return "observation/observationForm"; 
 		}
-		System.out.println(observationReport);
+		
 		Stargazer stargazer = stargazerRepository.findByUserName(user.getUsername());
 		observationReport.setStargazer(stargazer);
 		
 		skyObservationService.addorUpdateObservation(observationReport);
 		
+		logger.debug("Saved Observation: " + observationReport.toString());
+
 		return "redirect:/observations/observationList";
 	}
 	
