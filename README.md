@@ -31,7 +31,7 @@ It is mostly conceptual as the main purpose of the project is to use different t
 
 * There are unit tests, slice tests and Selenium tests.
 
-* CI: I have a Jenkins server which trigger a build everytime I commit to Github. The uber jar is then automatically uploaded to an Artifactory repository so that every build is available.
+* CI: I have a Jenkins server which trigger a build everytime I commit to Github. The uber jar is then automatically uploaded to an Artifactory repository (running within a Docker container) so that every build is available.
 
 * Git and Github for version control.
 
@@ -56,9 +56,9 @@ The user can manage a list of observations: add, edit and delete.
 
 ## Astronomical Data
 The user can search an astronomical object by name and get as results:
-- The coordinates of the object to set up the telescope.
-- A planetarium view to help him visually locate the object in the sky
-- An optical view.
+- The coordinates of the object.
+- A planetarium view to help him visually locate the object in the sky (from [VirtualSky](https://github.com/slowe/VirtualSky), hosted locally on a Nginx web server).
+- An optical view (from [Wikisky[(http://www.wikisky.org/)).
 The planetarium and optical views are embedded iframes.
 
 ![AstroData](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/astrodatasearch.png "AstroData")
