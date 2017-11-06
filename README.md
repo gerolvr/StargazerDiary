@@ -1,7 +1,8 @@
 # StargazerDiary
 
 # Table of Content
-* [Presentation of the interface](#presentation-of-the-interface)
+* [Presentation](#presentation)
+* [Interface](#interface)
   * [My Telescopes](#my-telescopes)
   * [My Observations](#my-observations)
   * [Astronomical Data](#astronomical-data)
@@ -9,6 +10,8 @@
 * [Caching](#caching)
 * [Custom error pages](#custom-error-pages)
   
+# Presentation
+
 Stargazer Diary is a simple demo project.
 The idea is to allow a stargazer to list its telescopes and keep a track of the observations he made.
 It is mostly conceptual as the main purpose of the project is to use different technologies required in a full stack project, back-end and front-end.
@@ -36,7 +39,7 @@ It is mostly conceptual as the main purpose of the project is to use different t
 
 * Development is done on Linux and with tools such as Eclipse (STS), Visual Studio Code, Chrome, Curl, Postman, Maven.
 
-# Presentation of the interface
+# Interface
 ## My Telescopes
 The user can manage a list of telescopes he owns with basic operations: add, edit and delete.
 
