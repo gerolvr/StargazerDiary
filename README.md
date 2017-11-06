@@ -1,7 +1,8 @@
 # StargazerDiary
 
 # Table of Content
-* [Presentation of the interface](#presentation-of-the-interface)
+* [Presentation](#presentation)
+* [Interface](#interface)
   * [My Telescopes](#my-telescopes)
   * [My Observations](#my-observations)
   * [Astronomical Data](#astronomical-data)
@@ -9,6 +10,10 @@
 * [Caching](#caching)
 * [Custom error pages](#custom-error-pages)
   
+# Presentation
+
+[Link to the live website](http://gertest.hopto.org)
+
 Stargazer Diary is a simple demo project.
 The idea is to allow a stargazer to list its telescopes and keep a track of the observations he made.
 It is mostly conceptual as the main purpose of the project is to use different technologies required in a full stack project, back-end and front-end.
@@ -21,22 +26,20 @@ It is mostly conceptual as the main purpose of the project is to use different t
 
 * There are unit tests, slice tests, Selenium tests.
 
-* Json
+* The same application also have a REST API for CRUD operation. Data are exchanged in JSON.
+  See the [AngularJS](http://gertest.hopto.org:81/) (and [repository](https://github.com/gerolvr/StargazerDiary-Frontend-AngularJS)) and the [Angular 4](http://gertest.hopto.org:82/) (and [repository](https://github.com/gerolvr/StargazerDiary-Frontend-Angular4)) front-ends.
 
-* For version control system I use Git and Github
+* Git and Github for version control.
 
 * I make use of Spring profiles, depending on the environment I need (dev, prod, etc.)
 
 * CI: I have a Jenkins server which trigger a build everytime I commit to Github. The uber jar is then automatically uploaded to an Artifactory repository so that every build is available.
 
-* The same application also have a REST API for CRUD operation
-  See the AngularJS and the Angular 4 front-ends.
-
 * The application is deployed on a AWS EC2 instance.
 
-* Development is done on Linux and with tools such as Eclipse (STS), Visual Studio Code, Chrome, Curl, Postman, Maven.
+* Development is done on Linux and with tools such as Spring Tool Suite (Eclipse), Visual Studio Code, Chrome, Curl, Postman, Maven.
 
-# Presentation of the interface
+# Interface
 ## My Telescopes
 The user can manage a list of telescopes he owns with basic operations: add, edit and delete.
 
