@@ -1,5 +1,6 @@
 package com.gerolivo.stargazerdiary.restcontrollers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import com.gerolivo.stargazerdiary.services.RegistrationService;
 @RequestMapping("${restapi.path}" + "/registration")
 public class RegistrationRestController {
 	
+	Logger logger = Logger.getLogger(RegistrationRestController.class);
+	
 	@Autowired
 	RegistrationService registrationService;
 	
@@ -26,8 +29,7 @@ public class RegistrationRestController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> register(@RequestBody StargazerDtoNoMail stargazerDto){
-		System.out.println("Name: " + stargazerDto.getName());
-		System.out.println("Password: " + stargazerDto.getPassword());
+		logger.debug("Name: " + stargazerDto.getName());
 		Stargazer existingStargazer = registrationService.findUserByName(stargazerDto.getName());
 		if (existingStargazer != null) {
 			return new ResponseEntity<>("There is already a user with this name.", HttpStatus.BAD_REQUEST);
