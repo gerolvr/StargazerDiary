@@ -14,34 +14,36 @@
 
 [Link to the live website](http://gertest.hopto.org)
 
-Stargazer Diary is a simple demo project.
-The idea is to allow a stargazer to list its telescopes and keep a track of the observations he made.
+Stargazer Diary is a demo project.
+The idea is to allow the user to keep a list of telescopes and observations.
 It is mostly conceptual as the main purpose of the project is to use different technologies required in a full stack project, back-end and front-end.
 
 * It is build with the Spring framework and other Spring projects: Boot, Data JPA, Security, Session, Web MVC, Devtools, Actuator.
 
-* Data are stored in a MySql database but I also use the H2 in-memory database during development.
+* Data are stored in a MySql database but I also use a H2 in-memory database during development.
 
-* For the view, I use Thymeleaf, HTML, CSS, Bootstrap, Jquery-ui. js and css files are provided with Webjars
+* For the view, I use Thymeleaf, HTML, CSS, Bootstrap, Jquery-ui.
 
-* There are unit tests, slice tests, Selenium tests.
+* Javascript and CSS files are provided with Webjars.
 
 * The same application also have a REST API for CRUD operation. Data are exchanged in JSON.
   See the [AngularJS](http://gertest.hopto.org:81/) (and [repository](https://github.com/gerolvr/StargazerDiary-Frontend-AngularJS)) and the [Angular 4](http://gertest.hopto.org:82/) (and [repository](https://github.com/gerolvr/StargazerDiary-Frontend-Angular4)) front-ends.
 
-* Git and Github for version control.
-
-* I make use of Spring profiles, depending on the environment I need (dev, prod, etc.)
+* There are unit tests, slice tests and Selenium tests.
 
 * CI: I have a Jenkins server which trigger a build everytime I commit to Github. The uber jar is then automatically uploaded to an Artifactory repository so that every build is available.
 
+* Git and Github for version control.
+
+* Several Spring profiles, depending on the environment I need (dev, prod, etc.).
+
 * The application is deployed on a AWS EC2 instance.
 
-* Development is done on Linux and with tools such as Spring Tool Suite (Eclipse), Visual Studio Code, Chrome, Curl, Postman, Maven.
+* Development is done on Linux with tools such as Spring Tool Suite (Eclipse), Visual Studio Code, Chrome, Curl, Postman, Maven.
 
 # Interface
 ## My Telescopes
-The user can manage a list of telescopes he owns with basic operations: add, edit and delete.
+The user can manage a list of telescopes with basic operations: add, edit and delete.
 
 ![Telescopes](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/telescope1.png "Telescopes")
 ![Telescopes](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/telescope2.png "Telescopes")
@@ -54,10 +56,10 @@ The user can manage a list of observations: add, edit and delete.
 
 ## Astronomical Data
 The user can search an astronomical object by name and get as results:
-The coordinates of the object to set up the telescope.
-A planetarium view to help him visually locate the object in the sky
-An optical view.
-The planetarium and optical views are embedded iframes from external website.
+- The coordinates of the object to set up the telescope.
+- A planetarium view to help him visually locate the object in the sky
+- An optical view.
+The planetarium and optical views are embedded iframes.
 
 ![AstroData](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/astrodatasearch.png "AstroData")
 
