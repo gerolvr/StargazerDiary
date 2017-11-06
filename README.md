@@ -27,7 +27,7 @@ It is mostly conceptual as the main purpose of the project is to use different t
 * Javascript and CSS files are provided with Webjars.
 
 * The same application also have a REST API for CRUD operation. Data are exchanged in JSON.
-  See the [AngularJS](http://gertest.hopto.org:81/) (and [repository](https://github.com/gerolvr/StargazerDiary-Frontend-AngularJS)) and the [Angular 4](http://gertest.hopto.org:82/) (and [repository](https://github.com/gerolvr/StargazerDiary-Frontend-Angular4)) front-ends.
+  See the [AngularJS website](http://gertest.hopto.org:81/) (and [repository](https://github.com/gerolvr/StargazerDiary-Frontend-AngularJS)) and the [Angular 4 website](http://gertest.hopto.org:82/) (and [repository](https://github.com/gerolvr/StargazerDiary-Frontend-Angular4)) front-ends.
 
 * There are unit tests, slice tests and Selenium tests.
 
