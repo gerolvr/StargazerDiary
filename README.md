@@ -89,3 +89,4 @@ Specifically in the Astronomical Data section, when a search is executed a rest 
 
 A nice feature is to have a generic error page to handle many errors, i.e. a 4xx.html page in   [/src/main/resources/templates/error/4xx.html](http://https://github.com/gerolvr/StargazerDiary/tree/master/src/main/resources/templates/error "/src/main/resources/templates/error/4xx.html") will handle all 4xx errors (404,401,…)
 ![404](https://raw.githubusercontent.com/gerolvr/StargazerDiary/master/pictures/404.png "404")
+
